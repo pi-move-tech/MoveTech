@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Vale Rota — mobilidade inteligente desenvolvida pela equipe MoveTech.">
+  <title>Vale Rota | MoveTech</title>
+  <style>
+    :root {
+      --azul: #2563eb;
+      --azul-escuro: #173b78;
+      --azul-profundo: #102a50;
+      --texto: #263449;
+      --texto-suave: #66758a;
+      --fundo: #f5f8fc;
+      --branco: #fff;
+      --borda: #e4eaf2;
+      --sombra: 0 12px 35px rgba(20, 48, 86, .08);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      color: var(--texto);
+      background: var(--branco);
+      line-height: 1.6;
+    }
+    a { color: inherit; }
+    .container { width: min(1120px, 90%); margin: 0 auto; }
+
+    /* Cabeçalho */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(255,255,255,.96);
+      border-bottom: 1px solid var(--borda);
+      backdrop-filter: blur(12px);
+    }
+    .nav-conteudo {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .logo {
+      color: var(--azul-escuro);
+      font-size: 1.45rem;
+      font-weight: 800;
+      letter-spacing: -.5px;
+      text-decoration: none;
+    }
+    .logo span { color: var(--azul); }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      list-style: none;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--texto-suave);
+      font-size: .95rem;
+      font-weight: 600;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--azul); }
+
+    /* Apresentação */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      min-height: 570px;
+      display: flex;
+      align-items: center;
+      color: var(--branco);
+      background:
+        radial-gradient(circle at 80% 20%, rgba(76, 147, 255, .35), transparent 30%),
+        linear-gradient(120deg, rgba(12, 35, 70, .97), rgba(27, 77, 145, .88)),
+        var(--azul-profundo);
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 480px;
+      height: 480px;
+      right: -100px;
+      bottom: -230px;
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 50%;
+      box-shadow: 0 0 0 45px rgba(255,255,255,.035), 0 0 0 90px rgba(255,255,255,.025);
+    }
+    .hero-conteudo { position: relative; z-index: 1; max-width: 720px; padding: 90px 0; }
+    .etiqueta {
+      display: inline-block;
+      margin-bottom: 20px;
+      padding: 7px 13px;
+      border: 1px solid rgba(255,255,255,.28);
+      border-radius: 30px;
+      color: #dceaff;
+      font-size: .82rem;
+      font-weight: 700;
+      letter-spacing: .5px;
+    }
+    .hero h1 {
+      max-width: 680px;
+      margin-bottom: 20px;
+      font-size: clamp(2.6rem, 6vw, 4.5rem);
+      line-height: 1.08;
+      letter-spacing: -2px;
+    }
+    .hero h1 span { color: #8fc1ff; }
+    .hero p { max-width: 610px; margin-bottom: 32px; color: #e0eaf8; font-size: 1.12rem; }
+    .botao {
+      display: inline-block;
+      padding: 13px 23px;
+      border-radius: 8px;
+      background: var(--azul);
+      color: var(--branco);
+      text-decoration: none;
+      font-weight: 700;
+      box-shadow: 0 8px 20px rgba(0,0,0,.16);
+      transition: transform .2s, background .2s;
+    }
+    .botao:hover { background: #3978ed; transform: translateY(-2px); }
+
+    /* Seções */
+    section { padding: 88px 0; scroll-margin-top: 76px; }
+    .titulo-secao { margin-bottom: 14px; color: var(--azul-escuro); text-align: center; font-size: clamp(1.8rem, 4vw, 2.4rem); }
+    .subtitulo-secao { max-width: 680px; margin: 0 auto 42px; color: var(--texto-suave); text-align: center; }
+    .sobre-conteudo { max-width: 850px; margin: 0 auto; text-align: center; font-size: 1.08rem; color: var(--texto-suave); }
+    .destaques {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 42px;
+    }
+    .destaque {
+      padding: 24px;
+      border: 1px solid var(--borda);
+      border-radius: 12px;
+      background: var(--branco);
+      text-align: center;
+    }
+    .destaque strong { display: block; margin-bottom: 5px; color: var(--azul-escuro); font-size: 1.05rem; }
+    .destaque span { color: var(--texto-suave); font-size: .92rem; }
+
+    /* Equipe */
+    .equipe { background: var(--fundo); }
+    .equipe-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 22px;
+    }
+    .membro-card {
+      padding: 28px 18px;
+      border: 1px solid var(--borda);
+      border-radius: 14px;
+      background: var(--branco);
+      text-align: center;
+      box-shadow: var(--sombra);
+      transition: transform .2s;
+    }
+    .membro-card:hover { transform: translateY(-5px); }
+    .membro-img {
+      width: 112px;
+      height: 112px;
+      margin: 0 auto 16px;
+      border: 4px solid #e5efff;
+      border-radius: 50%;
+      object-fit: cover;
+      background: #dce8f8;
+    }
+    .membro-card h3 { margin-bottom: 4px; color: var(--azul-escuro); }
+    .membro-card p { color: var(--texto-suave); font-size: .9rem; }
+
+    /* Informativos */
+    .blog-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; }
+    .post-card {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid var(--borda);
+      border-radius: 14px;
+      background: var(--branco);
+      box-shadow: var(--sombra);
+      transition: transform .2s;
+    }
+    .post-card:hover { transform: translateY(-5px); }
+    .post-visual {
+      min-height: 170px;
+      display: grid;
+      place-items: center;
+      color: var(--branco);
+      background: linear-gradient(135deg, #1d4f91, #4d9be8);
+      font-size: 2.5rem;
+      font-weight: 800;
+    }
+    .post-card:nth-child(2) .post-visual { background: linear-gradient(135deg, #17436c, #38a3a5); }
+    .post-card:nth-child(3) .post-visual { background: linear-gradient(135deg, #283d72, #718bd4); }
+    .post-content { flex: 1; display: flex; flex-direction: column; padding: 24px; }
+    .post-content h3 { margin-bottom: 10px; color: var(--azul-escuro); font-size: 1.15rem; line-height: 1.35; }
+    .post-content p { margin-bottom: 22px; color: var(--texto-suave); font-size: .94rem; }
+    .post-meta { margin-top: auto; padding-top: 14px; border-top: 1px solid var(--borda); color: #8290a3; font-size: .8rem; }
+
+    /* Rodapé */
+    footer { padding: 28px 5%; background: var(--azul-profundo); color: #dce7f5; text-align: center; font-size: .9rem; }
+    footer strong { color: var(--branco); }
+
+    @media (max-width: 850px) {
+      .equipe-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .blog-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 600px) {
+      .nav-conteudo { padding: 15px 0; flex-direction: column; gap: 10px; }
+      .nav-links { justify-content: center; flex-wrap: wrap; gap: 10px 20px; }
+      .hero { min-height: 500px; }
+      .hero-conteudo { padding: 70px 0; }
+      .hero h1 { letter-spacing: -1px; }
+      section { padding: 65px 0; }
+      .destaques, .equipe-grid, .blog-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <nav class="container nav-conteudo" aria-label="Navegação principal">
+      <a class="logo" href="#inicio">Move<span>Tech</span></a>
+      <ul class="nav-links">
+        <li><a href="#inicio">Início</a></li>
+        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#equipe">Equipe</a></li>
+        <li><a href="#blog">Vale Rota</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="container">
+        <div class="hero-conteudo">
+          <span class="etiqueta">TECNOLOGIA • MOBILIDADE • INOVAÇÃO</span>
+          <h1>Conheça um novo caminho com o <span>Vale Rota.</span></h1>
+          <p>Uma solução desenvolvida pela equipe MoveTech para conectar pessoas, organizar trajetos e tornar a mobilidade mais inteligente.</p>
+          <a class="botao" href="#sobre">Conheça o projeto</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="sobre">
+      <div class="container">
+        <h2 class="titulo-secao">Sobre o Projeto</h2>
+        <p class="subtitulo-secao">Tecnologia aplicada para melhorar a forma como as pessoas encontram e utilizam seus trajetos.</p>
+        <div class="sobre-conteudo">
+          <p>O MoveTech busca desenvolver soluções inteligentes para o cotidiano. Seu principal projeto, o Vale Rota, surgiu da necessidade de mapear, otimizar e conectar trajetos com mais eficiência, aproximando comunidades e contribuindo para uma mobilidade mais acessível e organizada.</p>
+        </div>
+        <div class="destaques">
+          <div class="destaque"><strong>Rotas inteligentes</strong><span>Informações organizadas para facilitar os deslocamentos.</span></div>
+          <div class="destaque"><strong>Mais acessibilidade</strong><span>Uma experiência pensada para diferentes pessoas e necessidades.</span></div>
+          <div class="destaque"><strong>Inovação</strong><span>Tecnologia como ferramenta para resolver problemas reais.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="equipe" id="equipe">
+      <div class="container">
+        <h2 class="titulo-secao">Nossa Equipe</h2>
+        <p class="subtitulo-secao">As pessoas por trás do desenvolvimento do Vale Rota.</p>
+        <div class="equipe-grid">
+          <article class="membro-card">
+            <img class="membro-img" src="public/imgs/equipe/enzo.jpeg" alt="Foto de Enzo">
+            <h3>Enzo</h3><p>Desenvolvedor / Tecnologia</p>
+          </article>
+          <article class="membro-card">
+            <img class="membro-img" src="public/imgs/equipe/marcus.jpeg" alt="Foto de Marcus">
+            <h3>Marcus</h3><p>Líder de Projeto</p>
+          </article>
+          <article class="membro-card">
+            <img class="membro-img" src="public/imgs/equipe/satio.jpeg" alt="Foto de Satio">
+            <h3>Satio</h3><p>UI/UX Designer</p>
+          </article>
+          <article class="membro-card">
+            <img class="membro-img" src="public/imgs/equipe/membro1.jpeg" alt="Foto do integrante da equipe">
+            <h3>Membro 1</h3><p>Especialista de Sistemas</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="blog">
+      <div class="container">
+        <h2 class="titulo-secao">Informativos &amp; Rotas</h2>
+        <p class="subtitulo-secao">Acompanhe as novidades, ideias e etapas de desenvolvimento do Vale Rota.</p>
+        <div class="blog-grid">
+          <article class="post-card">
+            <div class="post-visual" aria-hidden="true">01</div>
+            <div class="post-content">
+              <h3>Primeiros Passos no Vale Rota</h3>
+              <p>Conheça a proposta do projeto e como o mapeamento de trajetos pode ajudar a tornar os deslocamentos mais organizados e eficientes.</p>
+              <div class="post-meta">Por <strong>Equipe MoveTech</strong> · 03 Nov, 2026</div>
+            </div>
+          </article>
+          <article class="post-card">
+            <div class="post-visual" aria-hidden="true">02</div>
+            <div class="post-content">
+              <h3>Design focado em Acessibilidade</h3>
+              <p>Veja como a interface está sendo planejada para oferecer uma navegação simples, clara e acessível para diferentes perfis de usuários.</p>
+              <div class="post-meta">Por <strong>Satio</strong> · 30 Out, 2026</div>
+            </div>
+          </article>
+          <article class="post-card">
+            <div class="post-visual" aria-hidden="true">03</div>
+            <div class="post-content">
+              <h3>Próximas Atualizações</h3>
+              <p>Conheça os próximos passos da infraestrutura e as melhorias planejadas para a evolução da plataforma Vale Rota.</p>
+              <div class="post-meta">Por <strong>Marcus</strong> · 24 Out, 2026</div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 <strong>MoveTech - Vale Rota</strong>. Todos os direitos reservados.</p>
+  </footer>
+</body>
+</html>
