@@ -1,0 +1,180 @@
+/* cores da logo da Move Tech */
+:root {
+    --verde: #27EBA3;
+    --azul: #10BDF9;
+    --azul-texto: #0878a0;
+    --escuro: #0b1f2a;
+    --texto: #202124;
+    --texto-suave: rgba(32, 33, 36, .72);
+    --fundo: #F5F7FB;
+    --borda: #E5E7EB;
+    --vermelho: #c9302c;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    /* para o menu fixo não cobrir o título da sessão */
+    scroll-padding-top: 80px;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: Inter, "Segoe UI", Arial, sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--texto);
+    background: #fff;
+}
+
+img {
+    max-width: 100%;
+}
+
+a {
+    color: var(--azul-texto);
+    text-decoration: none;
+}
+
+.move-container {
+    width: min(100% - 64px, 1320px);
+    margin-inline: auto;
+}
+
+/* ---------- títulos das sessões ---------- */
+.move-secao {
+    padding: clamp(48px, 6vw, 80px) 0;
+    border-bottom: 1px solid var(--borda);
+}
+
+.move-secao--cinza {
+    background: var(--fundo);
+}
+
+.move-secao__cabecalho {
+    max-width: 680px;
+    margin-bottom: 32px;
+}
+
+.move-eyebrow {
+    margin: 0 0 8px;
+    color: var(--azul-texto);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .075em;
+    text-transform: uppercase;
+}
+
+.move-secao__titulo {
+    margin: 0;
+    font-size: clamp(29px, 2.7vw, 38px);
+    font-weight: 800;
+    line-height: 1.12;
+    letter-spacing: -.035em;
+    color: var(--escuro);
+}
+
+.move-secao__descricao {
+    margin: 12px 0 0;
+    color: var(--texto-suave);
+}
+
+.move-vazio {
+    color: var(--texto-suave);
+}
+
+/* ---------- botões ---------- */
+.move-botao {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 24px;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    font: 600 14px/1.2 Inter, "Segoe UI", Arial, sans-serif;
+    cursor: pointer;
+    transition: filter 160ms ease, background 160ms ease, color 160ms ease, transform 160ms ease;
+}
+
+.move-botao--cheio {
+    background: linear-gradient(90deg, var(--verde), var(--azul));
+    color: var(--escuro);
+    box-shadow: 0 6px 18px rgba(16, 189, 249, .25);
+}
+
+.move-botao--cheio:hover {
+    filter: brightness(.94);
+    color: var(--escuro);
+}
+
+.move-botao--contorno {
+    background: #fff;
+    border-color: var(--azul-texto);
+    color: var(--azul-texto);
+}
+
+.move-botao--contorno:hover {
+    background: var(--azul-texto);
+    color: #fff;
+}
+
+.move-botao--perigo {
+    background: #fff;
+    border-color: var(--vermelho);
+    color: var(--vermelho);
+}
+
+.move-botao--perigo:hover {
+    background: var(--vermelho);
+    color: #fff;
+}
+
+.move-botao--pequeno {
+    padding: 8px 16px;
+    font-size: 13px;
+    box-shadow: none;
+}
+
+.move-botao--cheia-largura {
+    width: 100%;
+}
+
+/* ---------- mensagens (flash) ---------- */
+.move-topo-mensagens {
+    margin-top: 20px;
+}
+
+.move-alerta {
+    margin: 0 0 16px;
+    padding: 12px 16px;
+    border-radius: 8px;
+    border: 1px solid;
+    font-size: 14px;
+}
+
+.move-alerta--sucesso {
+    background: #e8faf3;
+    border-color: #9be8c8;
+    color: #0d5c3f;
+}
+
+.move-alerta--erro {
+    background: #fdecea;
+    border-color: #f2b8b5;
+    color: #8c1d18;
+}
+
+@media (max-width: 600px) {
+    .move-container {
+        width: min(100% - 40px, 1320px);
+    }
+}

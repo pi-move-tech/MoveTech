@@ -1,0 +1,189 @@
+<%- include ('partials/header.ejs') %>
+<%- include ('partials/navbar.ejs') %>
+
+<!-- INÍCIO -->
+<section class="move-hero">
+    <div class="move-container move-hero__inner">
+        <div class="move-hero__conteudo">
+            <p class="move-eyebrow">DSM · Fatec Registro</p>
+            <h1 class="move-hero__titulo">
+                Move Tech,<br>
+                <span>a equipe por trás do Vale Rota.</span>
+            </h1>
+            <p class="move-hero__descricao">
+                Somos estudantes de Desenvolvimento de Software Multiplataforma. Aqui você conhece o grupo,
+                o nosso projeto e as novidades do blog.
+            </p>
+            <div class="move-hero__botoes">
+                <a class="move-botao move-botao--cheio" href="#equipe">Conheça nossa equipe <span aria-hidden="true">→</span></a>
+                <a class="move-botao move-botao--contorno" href="#valerota">Ver o Vale Rota</a>
+            </div>
+        </div>
+        <div class="move-hero__visual">
+            <img src="/imgs/logo.svg" alt="Logo da Move Tech">
+        </div>
+    </div>
+</section>
+
+<!-- EQUIPE -->
+<section class="move-secao move-secao--cinza" id="equipe">
+    <div class="move-container">
+        <header class="move-secao__cabecalho">
+            <p class="move-eyebrow">Nossa equipe</p>
+            <h2 class="move-secao__titulo">Quem somos</h2>
+            <p class="move-secao__descricao">As pessoas que estão construindo a Move Tech e o Vale Rota.</p>
+        </header>
+
+        <% if (membros.length == 0) { %>
+            <p class="move-vazio">Nenhum membro cadastrado ainda.</p>
+        <% } %>
+
+        <!-- Cards dos membros -->
+        <div class="move-equipe__grade">
+            <% membros.forEach(membro => { %>
+                <% const iniciais = membro.nome.trim().split(/\s+/).map(parte => parte[0]).slice(0, 2).join('').toUpperCase(); %>
+                <article class="move-membro">
+                    <div class="move-membro__foto">
+                        <span class="move-membro__iniciais" aria-hidden="true"><%= iniciais %></span>
+                        <% if (membro.imagem) { %>
+                            <img src="<%= membro.imagem %>" alt="Foto de <%= membro.nome %>" loading="lazy" onerror="this.remove()">
+                        <% } %>
+                    </div>
+                    <h3 class="move-membro__nome"><%= membro.nome %></h3>
+                    <p class="move-membro__cargo"><%= membro.cargo %></p>
+                    <% if (membro.github && membro.github.startsWith("https://github.com/")) { %>
+                        <a class="move-membro__github" href="<%= membro.github %>" target="_blank" rel="noopener noreferrer">🐙 GitHub</a>
+                    <% } %>
+                </article>
+            <% }) %>
+        </div>
+    </div>
+</section>
+
+<!-- PROJETO VALE ROTA -->
+<section class="move-secao" id="valerota">
+    <div class="move-container">
+        <header class="move-secao__cabecalho">
+            <p class="move-eyebrow">Nosso projeto</p>
+            <h2 class="move-secao__titulo">Vale Rota</h2>
+            <p class="move-secao__descricao">Sistema inteligente de transporte público intermunicipal para o Vale do Ribeira.</p>
+        </header>
+
+        <div class="move-valerota">
+            <div class="move-valerota__texto">
+                <p>
+                    O Vale Rota é o nosso projeto integrador: um aplicativo web que reúne em um só lugar os
+                    horários e as rotas do transporte público intermunicipal da região.
+                </p>
+                <p>
+                    Ele foi pensado para estudantes e trabalhadores que dependem do ônibus todos os dias.
+                    Além de consultar os horários, a pessoa vê a previsão de atraso, que é baseada no histórico
+                    das viagens, e pode criar alertas personalizados.
+                </p>
+                <p>
+                    Na versão atual, com dados de demonstração, o sistema tem rotas entre Registro, Cajati,
+                    Jacupiranga, Pariquera-Açu, Iguape e Sete Barras.
+                </p>
+                <div class="move-valerota__tags">
+                    <span>Node.js</span>
+                    <span>Express</span>
+                    <span>Sequelize</span>
+                    <span>MySQL</span>
+                    <span>EJS</span>
+                </div>
+                <a class="move-botao move-botao--contorno" href="https://www.figma.com/design/8dnbi4e3bP7HmgR3Ew6EHA/Design-PI?node-id=0-1&p=f&t=x6sdGn7aUDPXajC9-0" target="_blank" rel="noopener noreferrer">Ver protótipo no Figma <span aria-hidden="true">→</span></a>
+            </div>
+
+            <div class="move-valerota__recursos">
+                <div class="move-recurso">
+                    <span class="move-recurso__numero">1</span>
+                    <h3>Busca de horários</h3>
+                    <p>Por origem, destino, data e período do dia.</p>
+                </div>
+                <div class="move-recurso">
+                    <span class="move-recurso__numero">2</span>
+                    <h3>Previsão de atraso</h3>
+                    <p>Calculada a partir do histórico das viagens.</p>
+                </div>
+                <div class="move-recurso">
+                    <span class="move-recurso__numero">3</span>
+                    <h3>Detalhes da viagem</h3>
+                    <p>Paradas e atraso esperado de cada horário.</p>
+                </div>
+                <div class="move-recurso">
+                    <span class="move-recurso__numero">4</span>
+                    <h3>Favoritos</h3>
+                    <p>Guarda as rotas que a pessoa mais usa.</p>
+                </div>
+                <div class="move-recurso">
+                    <span class="move-recurso__numero">5</span>
+                    <h3>Alertas</h3>
+                    <p>Avisos personalizados quando o ônibus atrasa.</p>
+                </div>
+                <div class="move-recurso">
+                    <span class="move-recurso__numero">6</span>
+                    <h3>Relatos</h3>
+                    <p>Os usuários podem reportar problemas na viagem.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- BLOG -->
+<section class="move-secao move-secao--cinza" id="blog">
+    <div class="move-container">
+        <header class="move-secao__cabecalho">
+            <p class="move-eyebrow">Novidades</p>
+            <h2 class="move-secao__titulo">Blog da equipe</h2>
+            <p class="move-secao__descricao">Recados e atualizações do grupo.</p>
+        </header>
+
+        <% if (posts.length == 0) { %>
+            <p class="move-vazio">Nenhuma publicação ainda.</p>
+        <% } %>
+
+        <!-- Cards dos posts -->
+        <div class="move-blog__grade">
+            <% posts.forEach(post => { %>
+                <article class="move-post">
+                    <p class="move-post__data"><%= new Date(post.data + 'T12:00:00').toLocaleDateString('pt-br') %></p>
+                    <h3 class="move-post__titulo"><%= post.titulo %></h3>
+                    <p class="move-post__mensagem"><%= post.mensagem %></p>
+                </article>
+            <% }) %>
+        </div>
+    </div>
+</section>
+
+<!-- SOBRE -->
+<section class="move-secao" id="sobre">
+    <div class="move-container">
+        <header class="move-secao__cabecalho">
+            <p class="move-eyebrow">Sobre</p>
+            <h2 class="move-secao__titulo">Sobre a Move Tech</h2>
+        </header>
+        <p class="move-sobre__texto">
+            A Move Tech é uma equipe de estudantes do curso de Desenvolvimento de Software Multiplataforma (DSM)
+            da Fatec Registro. A gente se juntou para desenvolver projetos de software que ajudem a resolver
+            problemas da nossa região, o Vale do Ribeira. Este site foi feito para apresentar o grupo, mostrar o
+            que estamos construindo e manter um espaço para os recados da equipe.
+        </p>
+        <div class="move-sobre__grade">
+            <div class="move-sobre__item">
+                <h3>Quem somos</h3>
+                <p>Estudantes de DSM que trabalham juntos nos projetos do curso.</p>
+            </div>
+            <div class="move-sobre__item">
+                <h3>O que fazemos</h3>
+                <p>Desenvolvemos sistemas web, e hoje o foco é o Vale Rota.</p>
+            </div>
+            <div class="move-sobre__item">
+                <h3>Onde estamos</h3>
+                <p>Fatec Registro, no Vale do Ribeira, interior de São Paulo.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<%- include ('partials/footer.ejs') %>

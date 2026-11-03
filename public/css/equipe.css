@@ -1,0 +1,113 @@
+/* painel que abre ao clicar em "Cadastrar" (só para quem está logado) */
+.move-painel {
+    margin-bottom: 32px;
+}
+
+.move-painel > summary {
+    display: inline-flex;
+    list-style: none;
+}
+
+.move-painel > summary::-webkit-details-marker {
+    display: none;
+}
+
+.move-painel__corpo {
+    margin-top: 16px;
+    padding: 24px;
+    background: #fff;
+    border: 1px solid var(--borda);
+    border-radius: 10px;
+    box-shadow: 0 6px 20px rgba(32, 33, 36, .045);
+}
+
+.move-equipe__grade {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 20px;
+}
+
+.move-membro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 28px 20px 24px;
+    text-align: center;
+    background: #fff;
+    border: 1px solid var(--borda);
+    border-radius: 10px;
+    box-shadow: 0 6px 20px rgba(32, 33, 36, .045);
+    transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+}
+
+.move-membro:hover {
+    border-color: rgba(16, 189, 249, .5);
+    box-shadow: 0 10px 28px rgba(16, 189, 249, .12);
+    transform: translateY(-3px);
+}
+
+/* quadrado da foto: se não tiver imagem, aparecem as iniciais */
+.move-membro__foto {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: 112px;
+    height: 112px;
+    margin-bottom: 18px;
+    overflow: hidden;
+    border-radius: 12px;
+    background: linear-gradient(140deg, var(--verde), var(--azul));
+    box-shadow: 0 6px 20px rgba(16, 189, 249, .18);
+}
+
+.move-membro__iniciais {
+    color: var(--escuro);
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -.04em;
+}
+
+.move-membro__foto img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.move-membro__nome {
+    margin: 0;
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: -.02em;
+    color: var(--escuro);
+}
+
+.move-membro__cargo {
+    margin: 4px 0 14px;
+    color: var(--azul-texto);
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.move-membro__github {
+    padding: 5px 14px;
+    border: 1px solid var(--borda);
+    border-radius: 999px;
+    background: var(--fundo);
+    color: var(--escuro);
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.move-membro__github:hover {
+    background: var(--escuro);
+    color: #fff;
+}
+
+.move-membro__acoes {
+    display: flex;
+    gap: 8px;
+    margin-top: auto;
+    padding-top: 18px;
+}

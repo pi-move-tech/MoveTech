@@ -1,0 +1,46 @@
+.move-blog__grade {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 20px;
+}
+
+.move-post {
+    display: flex;
+    flex-direction: column;
+    padding: 22px 22px 20px;
+    background: #fff;
+    border: 1px solid var(--borda);
+    border-radius: 10px;
+    box-shadow: 0 6px 20px rgba(32, 33, 36, .045);
+}
+
+.move-post__data {
+    margin: 0 0 8px;
+    color: var(--azul-texto);
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.move-post__titulo {
+    margin: 0 0 10px;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.3;
+    letter-spacing: -.02em;
+    color: var(--escuro);
+}
+
+/* mantém as quebras de linha digitadas nas mensagens */
+.move-post__mensagem {
+    margin: 0;
+    white-space: pre-line;
+    color: var(--texto-suave);
+    overflow-wrap: anywhere;
+}
+
+.move-post__acoes {
+    display: flex;
+    gap: 8px;
+    margin-top: auto;
+    padding-top: 18px;
+}
